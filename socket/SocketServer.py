@@ -18,18 +18,19 @@ class Server:
    
     def send(self):
         self.conn.sendall(self.data)
-    
+    def haveData(self):
+        return self.data
     def close(self):
         self.close()
         print("Connection closed.")
-    def haveData(self):
-        return self.data
+    def __repr__(self):
+        return "Socket Server" + str(self.HOST) + ':' + str(self.PORT)
 
-server = Server()
-while True:
-    server.accept()
-    server.recieve()
-    if not server.haveData():
-        print("No data...")
-    server.send()
-server.close()
+#server = Server()
+#while True:
+#    server.accept()
+ #   server.recieve()
+ #   if not server.haveData():
+ #       print("No data...")
+ #   server.send()
+#server.close()
