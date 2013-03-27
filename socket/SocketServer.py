@@ -1,17 +1,35 @@
 # Echo server program
 import socket, sys
+class Server:
+    def __init__(self):
+        self.HOST = 'localhost'
+        self.PORT = 1337
+        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.s.bind((self.HOST, self.PORT))
+        self.s.listen(1)
+        self.BUFFER = 1024
+        
+    def accept(self):
+        self.conn, self.addr = self.s.accept()
+        print('Connected by', self.addr)
+    
+    def recieve(self):
+        self.data = self.conn.recv(self.BUFFER)
+   
+    def send(self):
+        self.conn.sendall(self.data)
+    
+    def close(self):
+        self.close()
+        print("Connection closed.")
+    def haveData(self):
+        return self.data
 
-HOST = ''        # Symbolic name meaning all available interfaces
-PORT = 1337     # Arbitrary non-privileged port
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind((HOST, PORT))
-s.listen(1)
+server = Server()
 while True:
-    conn, addr = s.accept()
-    print('Connected by', addr)
-    data = conn.recv(1024)
-    data = b'Server says' + data
-    if not data:
-        break
-    conn.sendall(data)
-conn.close()
+    server.accept()
+    server.recieve()
+    if not server.haveData():
+        print("No data...")
+    server.send()
+server.close()

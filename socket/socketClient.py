@@ -1,7 +1,7 @@
 # Echo client program
 import socket
 
-class SocketClass:
+class Client:
 	def __init__ (self):
 		self.HOST = 'localhost'
 		self.PORT = 1337
@@ -19,7 +19,7 @@ class SocketClass:
 	def out(self):
 		print("Received:", self.data)
 
-client = SocketClass()
+client = Client()
 client.connect()
 client.send("This is a test")
 client.receive()
