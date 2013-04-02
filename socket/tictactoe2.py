@@ -52,7 +52,9 @@ def gameover():
     return False
 
 board = ['', 1, 2, 3, 4, 5, 6, 7, 8, 9]
-markers, counter= ['X', 'O'], 0
+markers, counter = ['X', 'O'], 0
+
+"""
 
 while not gameover():
     counter += 1
@@ -63,3 +65,4 @@ while not gameover():
     else:
         move(marker)
 print("WINNER: ", gameover())
+"""
