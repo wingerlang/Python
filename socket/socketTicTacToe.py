@@ -6,14 +6,12 @@ tic = __import__("tictactoe2")
 port, ipv4 = 1337, socket.gethostbyname(socket.gethostname())
 choice = input("Type 1 for server, 2 for Client: ")
 
-userport = input("Enter port number (default = %s): " % (port))
-port = userport or port 
+userport = input("Enter port number (Leave blank for port %s): " % (port))
+port = userport if type(userport) == int else  port 
 
-print("host is set to ", ipv4, "leave blank to proceed")
-userhost = input("Enter the host (default = %s)" % (ipv4))
-host = userhost or ipv4
+userhost = input("Enter IPv4 (Leave blank for %s): " % (ipv4))
+host = userhost if userhost != None else ipv4
 
-print(port, host)
 if choice == "1":
 	game = Server(host, port)
 else:
@@ -26,12 +24,11 @@ while not tic.gameover():
 	tic.show()
 	tic.counter += 1
 	marker = tic.markers[tic.counter % 2] 
-	#print("CURRENT PLAYER:", marker)
 
 	# Determine who it is
 	if game.marker() == marker:
 		print("Your turn!")
-		if tic.movesLeft():
+		if tic.movesLeft(marker):
 			tic.place(marker)
 		else:
 			tic.move(marker)
