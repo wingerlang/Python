@@ -4,21 +4,13 @@ import urllib.request, operator, re, sys, time
 from operator import itemgetter
 import parse_combat as P
 
-
 def get(url):
 	return str(urllib.request.urlopen(url).read())
-def regexresult(r):
-	if r:
-		print(r)
-	else:
-		print("No result")
 
-#parsed = str((f[f.find("pager_current"):]))
-start = 1
-stop = 20
-sleepTime = 0
+start, stop = 1, 80
+sleepTime = 3
 name = "Barnet Rosenbom "
-url = "http://g1.setrak.se/char/barnet_rosenbom/log?combat&page="
+url = "http://g1.setrak.se/char/" + name.lower().replace(" ", "_") + "/log?combat&page="
 
 baseurl = "http://g1.setrak.se"
 regex = "/combat/[\d]+"
@@ -67,5 +59,3 @@ enemies_sorted = (sorted(enemies.items(), key=itemgetter(1), reverse=True))
 
 for enemy in range(0, len(enemies_sorted)):
 	print(enemies_sorted[enemy])
-
-# Sort enemies by times we lost against them

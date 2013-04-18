@@ -21,7 +21,7 @@ def doStuff():
 	name = "Barnet Rosenbom"
 	hitstring = name + " tr\\xc3\\xa4ffar"
 
-	f = str(urllib.request.urlopen("http://g1.setrak.se/combat/386382").read())
+	f = str(urllib.request.urlopen("http://g1.setrak.se/combat/373409").read())
 	parsed = " ".join(removeSomeHTML(str((f[f.find("Runda 1"):]))).split())
 
 	print(parsed)
